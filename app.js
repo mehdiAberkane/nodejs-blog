@@ -7,8 +7,6 @@ const bodyParser = require('body-parser');
 
 const app = express();
 app.listen(3000);
-app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 mongoose.connect('mongodb://localhost/blog');
 //var Cat = mongoose.model('Cat', { name: String });
@@ -25,6 +23,10 @@ mongoose.connect('mongodb://localhost/blog');
 //middleware compression/favicon
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public', 'img/fav.ico'), 0));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+    extended: true
+}));
 
 //defined jade as view engine by default
 app.set('view engine', 'jade');
@@ -32,24 +34,36 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-        var articles = {"title": "mon titre", "slug": "mon-titre", "content": "mon article"};
+        var articles = [
+            {"title": "mon titre", "slug": "mon-titre", "content": "mon article"},
+            {"title": "mon titre 2", "slug": "mon-titsdsdsdre", "content": "les chats roux"},
+            {"title": "mon titre 3", "slug": "mon-titsdsdre", "content": "vive les chiens"},
+            {"title": "mon titre 4", "slug": "mon-titsdsddre", "content": "mon qsdqsdqsqdd"},
+            {"title": "mon titre 5", "slug": "mon-titrddsdsde", "content": "mon artqsdqsdicle"},
+            {"title": "mon titre 6", "slug": "mon-titsdssssre", "content": "mon qsdqsd"}
+        ];
 
         res.setHeader('Content-Type', 'text/html');
-        res.render('index', { articles });
+        res.render('index', {articles: articles });
     })
     .get('/contact', function(req, res) {
         res.setHeader('Content-Type', 'text/plain');
         res.end('Page contact');
     })
-    .get('/articles/:article_name/', function(req, res) {
+    .get('/article/:article_slug/', function(req, res) {
+        var article = [{"title": "mon titre", "slug": "mon-titre", "content": "mon article"}];
+
         res.setHeader('Content-Type', 'text/html');
-        res.render('index', { title: req.params.article_name, message: 'Mon super article!'});
+        res.render('article', {article: article });
     })
-    .post('/', (req, res) => {
-        var title = req.body.title;
-        var content = req.body.content;
-        if (title === undefined || content === undefined) {
+    .post('/', function(req, res) {
+        if (req.body.title.length == 0 || req.body.content.length == 0) {
             res.redirect('/');
+        } else {
+            var title = req.body.title;
+            var content = req.body.content;
+
+
         }
     })
 ;

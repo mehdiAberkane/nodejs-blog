@@ -13,16 +13,16 @@ block content
                 .row
                     each article in articles
                         .col-xs-6.col-lg-4
-                            h2 = article.title
-                            p = article.content.substr(1, 100) + '...'
+                            h2 #{article.title}
+                            p #{article.content.substr(0, 100) + '...'}
                             p
-                                a.btn.btn-default(href='/article/' + article.slug, role='button') View details »*
+                                a.btn.btn-primary(href='/article/' + article.slug, role='button') View details
         form(method="post")
             .form-group
-                label
+                label Titre
                 input(class="form-control" type="text" name="title")
             .form-group
-                label
+                label Contenue
                 textarea(name="content").form-control
             .form-group
                 label
