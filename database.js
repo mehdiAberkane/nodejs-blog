@@ -1,29 +1,34 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 
+const Article = mongoose.model('Article', {
+    title: String,
+    slug: { type: String, slug: "title" },
+    content: String
+});
+
 mongoose.plugin(slug);
 
 let getAll = function getAll(){
 
-    let articles = [
-        {"title": "mon titre", "slug": "mon-titre", "content": "mon article"},
-        {"title": "mon titre 2", "slug": "mon-titsdsdsdre", "content": "les chats roux"},
-        {"title": "mon titre 3", "slug": "mon-titsdsdre", "content": "vive les chiens"},
-        {"title": "mon titre 4", "slug": "mon-titsdsddre", "content": "mon qsdqsdqsqdd"},
-        {"title": "mon titre 5", "slug": "mon-titrddsdsde", "content": "mon artqsdqsdicle"},
-        {"title": "mon titre 6", "slug": "mon-titsdssssre", "content": "mon qsdqsd"}
-    ];
+    Article.find({slug: slug}, function (err, articles) {
+        if (err) { throw err; }
+
+        return articles;
+    });
+
     return articles;
 };
 
 let getOneBySlug = function getOneBySlug(slug) {
 
+    Article.find({slug: slug}, function (err, article) {
+        if (err) { throw err; }
+        return article;
+    });
 };
 
 let createArticle = function createArticle(title, content) {
-    var Article = mongoose.model('Article', {
-        title: String, slug: { type: String, slug: "title" }, content: String
-    });
 
     var newArticle = new Article({ title: title, content: content  });
     newArticle.save(function (err) {
@@ -39,14 +44,13 @@ let deleteArticle = function deleteArticle(article) {
 
 };
 
-
-
 const database = {
     mongoose: mongoose,
     getAll: getAll,
     getOneBySlug: getOneBySlug,
     createArticle: createArticle,
-    deleteArticle: deleteArticle
+    deleteArticle: deleteArticle,
+    article: Article
 };
 
 module.exports = database;

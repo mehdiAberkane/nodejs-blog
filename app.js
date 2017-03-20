@@ -23,19 +23,25 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
-
         res.setHeader('Content-Type', 'text/html');
-        res.render('index', {articles: database.getAll() });
+        database.article.find(null, function (err, articles) {
+            if (err) { throw err; }
+
+            res.render('index', {articles: articles });
+        });
     })
     .get('/contact', function(req, res) {
         res.setHeader('Content-Type', 'text/plain');
         res.end('Page contact');
     })
     .get('/article/:article_slug/', function(req, res) {
-        var article = [{"title": "mon titre", "slug": "mon-titre", "content": "mon article"}];
-
         res.setHeader('Content-Type', 'text/html');
-        res.render('article', {article: article });
+
+        database.article.find({slug: req.params.article_slug}, function (err, article) {
+            if (err) { throw err; }
+
+            res.render('article', {article: article[0] });
+        });
     })
     .post('/', function(req, res) {
         if (req.body.title.length == 0 || req.body.content.length == 0) {
