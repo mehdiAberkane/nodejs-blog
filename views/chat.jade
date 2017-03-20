@@ -1,0 +1,23 @@
+extends layout
+
+block content
+    .chat_window
+        .top_menu
+            .buttons
+                .button.close
+                .button.minimize
+                .button.maximize
+            .title Chat
+        ul.messages
+        .bottom_wrapper.clearfix
+            .message_input_wrapper
+                input.message_input(placeholder='Type your message here...')
+            .send_message
+                .icon
+                .text Send
+    .message_template
+        li.message
+            .avatar
+            .text_wrapper
+                .text
+
