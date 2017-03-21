@@ -8,7 +8,9 @@
     "lodash": "^4.17.4",
     "mongodb": "^2.2.24"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "socket.io": "^1.7.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"

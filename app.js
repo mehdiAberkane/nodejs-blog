@@ -3,9 +3,10 @@ const compression = require('compression');
 const favicon = require('serve-favicon');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
 const database = require('./database');
 const app = express();
+
 app.listen(3000);
 const server = require('http').createServer(app);
 const socketIo = require('socket.io').listen(server);
@@ -19,6 +20,8 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+app.set('trust proxy', 1); // trust first proxy
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
 
 //defined jade as view engine by default
 app.set('view engine', 'jade');
@@ -26,12 +29,29 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', function(req, res) {
+        var sess = req.session;
+        if (sess.login) {
+            console.log(sess.login);
+        } else {
+            sess.login = 'admiaaaan';
+        }
         res.setHeader('Content-Type', 'text/html');
         database.article.find(null, function (err, articles) {
             if (err) { throw err; }
 
             res.render('index', {articles: articles });
         });
+    })
+    .post('/login', function(req, res) {
+        var sess = req.session;
+        if (req.body.login == 'admin' && req.body.password == 'azerty') {
+            sess.pseudo = 'admin';
+            console.log(sess.pseudo);
+            res.setHeader('Content-Type', 'text/html');
+            res.end('Page contact');
+        } else {
+
+        }
     })
     .get('/contact', function(req, res) {
         res.setHeader('Content-Type', 'text/plain');

@@ -1,4 +1,4 @@
-extends layout
+extends layout_back
 
 block content
     .container
@@ -7,9 +7,7 @@ block content
                 p.pull-right.visible-xs
                     button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') Toggle nav
                 .jumbotron
-                    h1 Bienvenue sur mon blog
-                    p
-                        | Some example of nodeJS/Express/jade and mongoDB
+                    h1 Administration
                 .row
                     each article in articles
                         .col-xs-6.col-lg-4
@@ -17,13 +15,14 @@ block content
                             p #{article.content.substr(0, 100) + '...'}
                             p
                                 a.btn.btn-primary(href='/article/' + article.slug, role='button') View details
-        form(method="post" action="login")
+                                a.btn.btn-danger(href='/article/' + article.slug + '/remove', role='button') Remove
+        form(method="post" action="admin/create-article")
             .form-group
-                label Login
-                input(class="form-control" type="text" name="login")
+                label Titre
+                input(class="form-control" type="text" name="title")
             .form-group
-                label Password
-                input(class="form-control" type="password" name="password")
+                label Contenue
+                textarea(name="content").form-control
             .form-group
                 label
                 input(class="btn btn-primary" type="submit")
