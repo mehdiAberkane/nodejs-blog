@@ -5,13 +5,6 @@ const io = require('socket.io')(server);
 
 server.listen(3000);
 
-//config express
-app.use(express.static('public'));
-
-app.get('/', function(req, res){
-  res.end('Chat Dev10');
-});
-
 io.on('connection', function(socket){
   io.emit('server', 'Connect On');
 
