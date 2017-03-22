@@ -17,6 +17,10 @@ io.on('connection', function(socket){
 
   socket.on('client', function(from, msg){
     console.log('new message from: ', from, 'saying ', msg);
-    io.emit('server', [from, msg]);
+    io.emit('server', {
+      from: from,
+      msg: msg,
+      date: new Date()
+    });
   });
 });
