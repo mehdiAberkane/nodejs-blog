@@ -5,26 +5,57 @@
         <title>Socket.io</title>
     </head>
     <body>
-        <h1>Mon super chat</h1>
-        <input type="text" name="" value="" id="msg_box">
-        <button type="button" onclick="sendMessage()" name="button">Send</button>
-        <div id="chat_box">
-          <ul></ul>
+        <style>
+          #chat_box {
+            background-color: skyblue;
+            color: white;
+          }
+          ul {
+            list-style: none;
+          }
+          li {
+            background-color: green;
+            border: 1 px solid red;
+            padding: 15px;
+            border-radius: 10px;
+          }
+          .my-msg {
+            text-align: right;
+            color: grey;
+          }
+          .container {
+            width: 50%;
+            margin: auto;
+          }
+        </style>
+        <div class="container">
+          <h1>Mon super chat</h1>
+          <input type="text" name="" value="" id="msg_box">
+          <button type="button" onclick="sendMessage()" name="button">Send</button>
+          <div id="chat_box">
+            <ul></ul>
+          </div>
         </div>
         <script src="socket.io.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script>
+            var myName = 'Mehdi';
             var socket = io.connect('http://138.68.163.110:3000/');
+
             socket.on('server', function(data){
               if (typeof data === 'object'){
-                $('#chat_box ul').append("<li>" + data.from + " : " + data.msg +"</li>");
+                if (myName == data.from){
+                  $('#chat_box ul').append('<li class="my-msg">' + data.from + ' : ' + data.msg +'</li>');
+                } else {
+                  $('#chat_box ul').append("<li>" + data.from + " : " + data.msg +"</li>");
+                }
               } else {
                 $('#chat_box').append(data);
               }
             });
 
             function sendMessage() {
-              socket.emit('client', 'Mehdi', $('#msg_box').val());
+              socket.emit('client', myName, $('#msg_box').val());
               $('#msg_box').val(null);
             }
         </script>
