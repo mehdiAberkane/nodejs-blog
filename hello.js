@@ -4,4 +4,4 @@ var hello = function() {
 
 module.exports = {
     hello: hello
-};
+}
