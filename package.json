@@ -4,11 +4,17 @@
   "description": "A nodejs Blog for teaching",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "compression": "^1.6.2",
     "express": "^4.15.2",
+    "express-session": "^1.15.2",
+    "jade": "^1.11.0",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.24",
-    "socket.io": "^1.7.3"
+    "mongoose": "^4.9.9",
+    "mongoose-slug-generator": "^1.0.4",
+    "serve-favicon": "^2.4.2",
+    "socket.io": "^1.7.4"
   },
   "devDependencies": {
     "jshint": "^2.9.4",

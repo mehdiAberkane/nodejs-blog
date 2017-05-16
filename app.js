@@ -9,7 +9,7 @@ const app = express();
 
 app.listen(3000);
 const server = require('http').createServer(app);
-const socketIo = require('lib/socket.io').listen(server);
+const socketIo = require('socket.io').listen(server);
 
 database.mongoose.connect('mongodb://localhost/blog');
 
