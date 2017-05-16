@@ -4,12 +4,12 @@ const favicon = require('serve-favicon');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const database = require('./database');
+const database = require('./lib/database');
 const app = express();
 
 app.listen(3000);
 const server = require('http').createServer(app);
-const socketIo = require('socket.io').listen(server);
+const socketIo = require('lib/socket.io').listen(server);
 
 database.mongoose.connect('mongodb://localhost/blog');
 

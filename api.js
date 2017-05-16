@@ -1,4 +1,4 @@
-//import lib
+//import module
 const http = require('http');
 const util = require('util');
 const fs = require('fs');
@@ -8,8 +8,6 @@ const myHello = require('./hello');
 //config global
 const hostname = '127.0.0.1';
 const port = 3000;
-
-myHello.hello();
 
 function getErrorPage()
 {
@@ -21,7 +19,12 @@ function getErrorPage()
 const server = http.createServer((req, res) => {
     let pathName = req.url;
 
-    fs.readFile('html/'+pathName.substring(1)+'.html', (err, data) => {
+    var page = pathName.substring(1);
+    if (page.length < 1) {
+      page = 'index';
+    }
+
+    fs.readFile('html/'+page+'.html', (err, data) => {
         if (err) {
             res.statusCode = 404;
             res.setHeader('Content-Type', 'text/html');
