@@ -3,7 +3,7 @@ const http = require('http');
 const util = require('util');
 const fs = require('fs');
 const url = require('url');
-const myHello = require('./hello');
+const myHello = require('./../lib/hello');
 
 //config global
 const hostname = '127.0.0.1';

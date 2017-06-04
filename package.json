@@ -2,7 +2,7 @@
   "name": "nodejs-blog",
   "version": "1.0.0",
   "description": "A nodejs Blog for teaching",
-  "main": "server.js",
+  "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
     "compression": "^1.6.2",
@@ -17,12 +17,13 @@
     "socket.io": "^1.7.4"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "jshint": "^2.9.4",
     "socket.io": "^1.7.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api.js"
+    "start": "nodemon app.js"
   },
   "repository": {
     "type": "git",
