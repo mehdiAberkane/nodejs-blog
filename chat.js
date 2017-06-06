@@ -1,9 +1,9 @@
 const express = require('express');
 const app = express();
 const server = require('http').Server(app);
-const io = require('lib/socket.io')(server);
+const io = require('socket.io')(server);
 
-server.listen(3000);
+server.listen(3003);
 
 io.on('connection', function(socket){
   io.emit('server', 'Connect On');

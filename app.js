@@ -16,7 +16,7 @@ database.mongoose.connect('mongodb://localhost/blog');
 //middleware compression/favicon/urlencode/bodyParser
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public', 'img/fav.ico'), 0));
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use( bodyParser.json());       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
