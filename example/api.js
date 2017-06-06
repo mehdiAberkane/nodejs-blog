@@ -9,6 +9,8 @@ const myHello = require('./../lib/hello');
 const hostname = '127.0.0.1';
 const port = 3000;
 
+myHello.hello();
+
 function getErrorPage()
 {
     var data = fs.readFileSync('html/404.html');
