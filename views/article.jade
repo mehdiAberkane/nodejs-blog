@@ -5,3 +5,4 @@ block content
         .row.row-offcanvas.row-offcanvas-right
             h1 #{article.title}
             p #{article.content}
+            a.btn.btn-danger(href='/article-remove/' + article.slug, role='button') Delete

@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
         } else {
             sess.login = 'admiaaaan';
         }
-        res.setHeader('Content-Type', 'text/html');
+        
         database.article.find(null, function (err, articles) {
             if (err) { throw err; }
 
@@ -82,6 +82,13 @@ app.get('/', function(req, res) {
         }
 
         res.redirect('/');
+    })
+    .get('/article-remove/:article_slug/', function(req, res) {
+
+        database.article.remove({slug: req.params.article_slug}, function (err) {
+
+            res.redirect('/');
+        });
     })
 ;
 

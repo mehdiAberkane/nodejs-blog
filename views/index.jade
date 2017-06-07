@@ -17,13 +17,13 @@ block content
                             p #{article.content.substr(0, 100) + '...'}
                             p
                                 a.btn.btn-primary(href='/article/' + article.slug, role='button') View details
-        form(method="post" action="login")
+        form(method="post")
             .form-group
-                label Login
-                input(class="form-control" type="text" name="login")
+                label Titre
+                input(class="form-control" type="text" name="title")
             .form-group
-                label Password
-                input(class="form-control" type="password" name="password")
+                label Contenu
+                input(class="form-control" type="text" name="content")
             .form-group
                 label
                 input(class="btn btn-primary" type="submit")
