@@ -16,10 +16,11 @@ database.mongoose.connect('mongodb://localhost/blog');
 //middleware compression/favicon/urlencode/bodyParser
 app.use(compression());
 app.use(favicon(path.join(__dirname, 'public', 'img/fav.ico'), 0));
-app.use( bodyParser.json());       // to support JSON-encoded bodies
+app.use(bodyParser.json());       // for get param in POST and GET method
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
     extended: true
 }));
+
 app.set('trust proxy', 1); // trust first proxy
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
 
@@ -69,7 +70,6 @@ app.get('/', function(req, res) {
     .get('/chat', function(req, res) {
         res.setHeader('Content-Type', 'text/html');
 
-
         res.render('chat', { });
     })
     .post('/', function(req, res) {
@@ -78,7 +78,7 @@ app.get('/', function(req, res) {
         } else {
             var title = req.body.title;
             var content = req.body.content;
-            database.createArticle(title, content)
+            database.createArticle(title, content);
         }
 
         res.redirect('/');
