@@ -40,7 +40,7 @@ app.get('/', function(req, res) {
         database.article.find(null, function (err, articles) {
             if (err) { throw err; }
 
-            res.render('index', {articles: articles });
+            res.render('index', {articles: articles});
         });
     })
     .post('/login', function(req, res) {
@@ -51,7 +51,7 @@ app.get('/', function(req, res) {
             res.setHeader('Content-Type', 'text/html');
             res.end('Page contact');
         } else {
-
+            req.sess
         }
     })
     .get('/contact', function(req, res) {
