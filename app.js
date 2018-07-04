@@ -8,8 +8,6 @@ const database = require('./lib/database');
 const app = express();
 
 app.listen(3000);
-const server = require('http').createServer(app);
-const socketIo = require('socket.io').listen(server);
 
 database.mongoose.connect('mongodb://localhost/blog');
 
@@ -25,7 +23,7 @@ app.set('trust proxy', 1); // trust first proxy
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
 
 //defined jade as view engine by default
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.set('views', './views');
 app.use(express.static('public'));
 

@@ -8,11 +8,12 @@
     "compression": "^1.6.2",
     "express": "^4.15.2",
     "express-session": "^1.15.2",
-    "jade": "^1.11.0",
     "lodash": "^4.17.4",
     "mongodb": "^2.2.24",
     "mongoose": "^4.9.9",
     "mongoose-slug-generator": "^1.0.4",
+    "nodemon": "^1.17.5",
+    "pug": "^2.0.3",
     "serve-favicon": "^2.4.2",
     "socket.io": "^1.7.4"
   },
