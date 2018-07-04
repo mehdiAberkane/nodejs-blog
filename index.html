@@ -14,14 +14,14 @@
             list-style: none;
           }
           li {
-            background-color: green;
             border: 1px solid red;
             padding: 15px;
             border-radius: 10px;
           }
           .my-msg {
             text-align: right;
-            color: grey;
+            color: #000;
+            background-color: pink;
           }
           .container {
             width: 50%;
@@ -36,21 +36,22 @@
             <ul></ul>
           </div>
         </div>
+        
         <script src="lib/socket.io.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script>
-            var myName = 'Mehdi';
-            var socket = io.connect('http://10.94.73.3:3003/');
+        <script> 
+            var myName = 'La chèvre';
+            var socket = io.connect('http://10.94.101.6:3003/');
 
-            socket.on('server', function(data){
-              if (typeof data === 'object'){
-                if (myName == data.from){
-                  $('#chat_box ul').append('<li class="my-msg">' + data.from + ' : ' + data.msg +'</li>');
+            socket.on('server', function(data) {
+              if (typeof data === 'object') {
+                if (myName == data.from) {
+                  $('#chat_box ul').prepend('<li class="my-msg">' + data.from + ' : ' + data.msg +'</li>');
                 } else {
-                  $('#chat_box ul').append("<li>" + data.from + " : " + data.msg +"</li>");
+                  $('#chat_box ul').prepend("<li>" + data.from + " : " + data.msg +"</li>");
                 }
               } else {
-                $('#chat_box').append(data);
+                $('#chat_box').prepend(data);
               }
             });
 

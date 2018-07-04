@@ -74,7 +74,7 @@ app.get('/', function(req, res) {
     })
     .post('/', function(req, res) {
         if (req.body.title.length == 0 || req.body.content.length == 0) {
-            //gestion error
+            console.log("#####ERROR#####")
         } else {
             var title = req.body.title;
             var content = req.body.content;
