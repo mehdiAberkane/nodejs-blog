@@ -1,0 +1,12 @@
+{
+  "name": "pokemon",
+  "version": "1.0.0",
+  "description": "pokemon api",
+  "main": "init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node init.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
