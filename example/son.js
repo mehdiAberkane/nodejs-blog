@@ -1,6 +1,6 @@
 const scribble = require('scribbletune');
 let chords = scribble.clip({
-	notes: 'F#m C#m DM Bm EM AM DM C#m AM',
+	notes: 'DM DM DM DM DM',
 	pattern: 'x_x_x_--'.repeat(8),
 	sizzle: true
 }); 

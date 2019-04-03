@@ -5,25 +5,27 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.1",
-    "compression": "^1.6.2",
-    "express": "^4.15.2",
+    "compression": "^1.7.4",
+    "express": "^4.16.4",
     "express-session": "^1.15.2",
-    "lodash": "^4.17.4",
-    "mongodb": "^2.2.24",
-    "mongoose": "^4.9.9",
+    "lodash": "^4.17.11",
+    "mongodb": "^2.2.36",
+    "mongoose": "^4.13.18",
     "mongoose-slug-generator": "^1.0.4",
-    "nodemon": "^1.17.5",
+    "nodemon": "^1.18.10",
     "pug": "^2.0.3",
+    "scribbletune": "^1.9.4",
     "serve-favicon": "^2.4.2",
     "socket.io": "^1.7.4"
   },
   "devDependencies": {
-    "bootstrap": "^3.3.7",
-    "jshint": "^2.9.4",
+    "bootstrap": "^3.4.1",
+    "jshint": "^2.10.2",
+    "mocha": "^6.0.2",
     "socket.io": "^1.7.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon app.js"
   },
   "repository": {
